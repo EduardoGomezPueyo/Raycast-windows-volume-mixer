@@ -1,0 +1,48 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "windows-volume-mixer",
+  "title": "Windows Volume Mixer",
+  "description": "Changes individual application volume from Raycast",
+  "icon": "extension-icon.png",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "open-mixer",
+      "title": "Open Mixer",
+      "description": "Opens Windows Volume Mixer inside Raycast",
+      "mode": "view",
+      "subtitle": "Windows Volume Mixer"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.103.0",
+    "@raycast/utils": "^2.2.1",
+    "native-sound-mixer": "3.4.6-win"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.10",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "dev": "ray develop",
+    "lint": "ray lint",
+    "fix-lint": "ray lint --fix",
+    "build": "ray build",
+    "publish": "npx @raycast/api@latest publish",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1"
+  },
+  "author": "eduardo_gomez",
+  "platforms": [
+    "Windows"
+  ],
+  "categories": [
+    "Media"
+  ],
+  "external": [
+    "native-sound-mixer"
+  ]
+}
