@@ -1,4 +1,4 @@
-import { ActionPanel, Action, Icon, Image, List, showToast, Toast, Color, Keyboard } from "@raycast/api";
+import { ActionPanel, Action, Icon, List, showToast, Toast, Color, Keyboard } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
 import { getAudioSessions, setSessionVolume, toggleSessionMute, SessionInfo } from "./volume-mixer";
 
@@ -52,7 +52,7 @@ export default function Command() {
         sessions?.map((session) => (
           <List.Item
             key={session.id}
-            icon={{ fileIcon: session.appName }}
+            icon={{ fileIcon: session.iconPath }}
             title={session.displayName}
             subtitle={`${session.volumePercent}%`}
             accessories={[
@@ -62,25 +62,25 @@ export default function Command() {
             actions={
               <ActionPanel>
                 <Action
-                  title="Volume Up (+10%)"
+                  title="Increase Volume (+10%)"
                   icon={Icon.Plus}
                   shortcut={{ modifiers: ["shift"], key: "arrowRight" }}
                   onAction={() => handleVolumeChange(session, session.volumePercent + 10)}
                 />
                 <Action
-                  title="Volume Down (-10%)"
+                  title="Decrease Volume (-10%)"
                   icon={Icon.Minus}
                   shortcut={{ modifiers: ["shift"], key: "arrowLeft" }}
                   onAction={() => handleVolumeChange(session, session.volumePercent - 10)}
                 />
                 <Action
-                  title="Volume Up (+5%)"
+                  title="Increase Volume (+5%)"
                   icon={Icon.Plus}
                   shortcut={{ modifiers: ["ctrl"], key: "arrowRight" }}
                   onAction={() => handleVolumeChange(session, session.volumePercent + 5)}
                 />
                 <Action
-                  title="Volume Down (-5%)"
+                  title="Decrease Volume (-5%)"
                   icon={Icon.Minus}
                   shortcut={{ modifiers: ["ctrl"], key: "arrowLeft" }}
                   onAction={() => handleVolumeChange(session, session.volumePercent - 5)}
