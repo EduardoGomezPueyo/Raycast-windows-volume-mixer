@@ -28,7 +28,7 @@
     "typescript": "^5.8.2"
   },
   "scripts": {
-    "dev": "ray develop",
+    "dev": "node --require ./scripts/cp-sync-shim.cjs ./node_modules/@raycast/api/bin/run.js develop --target release",
     "lint": "ray lint",
     "fix-lint": "ray lint --fix",
     "build": "ray build",
