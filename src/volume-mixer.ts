@@ -13,6 +13,12 @@ function getDefaultOutputDevice() {
   return SoundMixer.getDefaultDevice(DeviceType.RENDER);
 }
 
+// native-sound-mixer encodes each UTF-16 unit separately, so emojis (surrogate pairs)
+// arrive as runs of U+FFFD. The original characters are unrecoverable; strip them.
+function cleanName(name: string): string {
+  return name.replace(/�+/g, "").replace(/\s{2,}/g, " ").trim();
+}
+
 export function getAudioSessions(): SessionInfo[] {
   const device = getDefaultOutputDevice();
   if (!device) return [];
@@ -21,7 +27,7 @@ export function getAudioSessions(): SessionInfo[] {
     .filter((s) => s.state !== AudioSessionState.EXPIRED && (s.name || s.appName))
     .map((s) => ({
       id: s.appName || s.name,
-      displayName: s.name || s.appName || "Unknown",
+      displayName: cleanName(s.name || "") || s.appName || "Unknown",
       appName: s.appName,
       volumePercent: Math.round(s.volume * 100),
       volumeRaw: s.volume,
